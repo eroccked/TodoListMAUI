@@ -36,39 +36,43 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="5" ColumnDefinitions="Auto, *, Auto">
 
-                        <CheckBox
-                            Grid.Column="0"
-                            IsChecked="{Binding IsCompleted}"
-                            CheckedChanged="OnTaskStatusChange" />
-                        
-                        <Label
-                            Grid.Column="1"
-                            Text="{Binding Name}"
-                            FontSize="Medium"
-                            VerticalOptions="Center"
-                            Margin="10, 0">
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                    Text="Delete"
+                                    IconImageSource="trash.png" BackgroundColor="#E74C4C"
+                                    Invoked="OnDeleteInvoked"
+                                    CommandParameter="{Binding .}"/>
+                            </SwipeItems>
                             
-                            <Label.Triggers>
-                                <DataTrigger TargetType="Label" Binding="{Binding IsCompleted}" Value="True">
-                                    <Setter Property="TextDecorations" Value="Strikethrough"/>
-                                    <Setter Property="TextColor" Value="#A9A9A9"/>
-                                </DataTrigger>
-                            </Label.Triggers>
-                        </Label>
-                        
-                        <Button
-                            Grid.Column="2"
-                            Text="❌"
-                            Clicked="OnDeleteButtonClicked"
-                            BackgroundColor="Transparent"
-                            TextColor="#E74C3C"
-                            WidthRequest="40"
-                            Padding="0"
-                            FontSize="12"/>
+                        </SwipeView.RightItems>
 
-                    </Grid>
+                        <Grid Padding="15, 10" ColumnDefinitions="Auto, *">
+
+                            <CheckBox
+                                Grid.Column="0"
+                                IsChecked="{Binding IsCompleted}"
+                                CheckedChanged="OnTaskStatusChange"
+                                Color="#2ECC71" />
+
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding Name}"
+                                FontSize="Medium"
+                                VerticalOptions="Center"
+                                Margin="15, 0">
+
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding IsCompleted}" Value="True">
+                                        <Setter Property="TextDecorations" Value="Strikethrough" />
+                                        <Setter Property="TextColor" Value="#A9A9A9" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </Grid>
+                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

@@ -47,4 +47,20 @@ public partial class MainPage : ContentPage
             Items.Remove(item);
         }
     }
+
+    private void OnDeleteInvoked(object? sender, EventArgs e)
+    {
+        var swipeItem = sender as SwipeItem;
+        var item = swipeItem?.CommandParameter as ToDoItem;
+
+        if (item != null)
+        {
+            Items.Remove(item);
+        }
+
+        if (swipeItem?.Parent is SwipeItem swipeItems && swipeItems.Parent is SwipeView swipeView)
+        {
+            swipeView.Close();
+        }
+    }
 }
