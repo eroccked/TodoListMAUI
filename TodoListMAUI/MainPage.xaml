@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoListMAUI.MainPage"
+             Title="TodoList">
+
+    <VerticalStackLayout Spacing="10" Padding="15">
+
+        <HorizontalStackLayout Spacing="10" Padding="15">
+
+            <Entry
+                x:Name="NewTaskEntry"
+                Placeholder="Enter new task"
+                HorizontalOptions="FillAndExpand"
+                Completed="OnAddButtonClicked"
+                ReturnType="Done" />
+
+            <Button
+                Text="+"
+                WidthRequest="50"
+                Clicked="OnAddButtonClicked"
+                BackgroundColor="#2ecc71"
+                TextColor="White"
+                CornerRadius="8"
+                FontSize="20"
+                FontAttributes="Bold" />
+        </HorizontalStackLayout>
+
+        <BoxView HeightRequest="1" Color="#CCCCCC" />
+
+        <CollectionView
+            x:Name="TasksCollectionView"
+            SelectionMode="None"
+            VerticalOptions="FillAndExpand">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5" ColumnDefinitions="Auto, *, Auto">
+
+                        <CheckBox
+                            Grid.Column="0"
+                            IsChecked="{Binding IsCompleted}"
+                            CheckedChanged="OnTaskStatusChange" />
+                        
+                        <Label
+                            Grid.Column="1"
+                            Text="{Binding Name}"
+                            FontSize="Medium"
+                            VerticalOptions="Center"
+                            Margin="10, 0">
+                            
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsCompleted}" Value="True">
+                                    <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                    <Setter Property="TextColor" Value="#A9A9A9"/>
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        
+                        <Button
+                            Grid.Column="2"
+                            Text="❌"
+                            Clicked="OnDeleteButtonClicked"
+                            BackgroundColor="Transparent"
+                            TextColor="#E74C3C"
+                            WidthRequest="40"
+                            Padding="0"
+                            FontSize="12"/>
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+
+</ContentPage>

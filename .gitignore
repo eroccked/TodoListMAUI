@@ -1,0 +1,7 @@
+﻿/TodoListMAUI.sln
+.idea/
+bin/
+obj/
+*.log
+*.tmp
+*.dll
