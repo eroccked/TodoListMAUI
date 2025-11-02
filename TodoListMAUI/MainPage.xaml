@@ -71,6 +71,16 @@
                                     </DataTrigger>
                                 </Label.Triggers>
                             </Label>
+                            
+                            <Button
+                                Grid.Column="2"
+                                Text="X"
+                                Clicked="OnDeleteButtonClicked"
+                                Background="Transparent"
+                                WidthRequest="40"
+                                TextColor="#E74C3C"
+                                Padding="0"
+                                FontSize="12"/>
                         </Grid>
                     </SwipeView>
                 </DataTemplate>
